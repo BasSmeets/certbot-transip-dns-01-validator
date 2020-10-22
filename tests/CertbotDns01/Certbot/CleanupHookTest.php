@@ -1,7 +1,8 @@
 <?php
 
-namespace RoyBongers\CertbotDns01\Tests\Certbot;
+namespace RoyBongers\Tests\CertbotDns01\Certbot;
 
+use RuntimeException;
 use Hamcrest\Matchers;
 use Mockery;
 use PHPUnit\Framework\TestCase;
@@ -13,11 +14,9 @@ use RoyBongers\CertbotDns01\Providers\Interfaces\ProviderInterface;
 
 class CleanupHookTest extends TestCase
 {
-    /** @var Dns01ManualHookHandler $hookHandler */
-    private $hookHandler;
+    private Dns01ManualHookHandler $hookHandler;
 
-    /** @var ProviderInterface $provider */
-    private $provider;
+    private ProviderInterface $provider;
 
     public function testCleanupHookWithPrimaryDomain(): void
     {
@@ -64,7 +63,7 @@ class CleanupHookTest extends TestCase
         putenv('CERTBOT_DOMAIN=example.com');
         putenv('CERTBOT_VALIDATION=AfricanOrEuropeanSwallow');
 
-        $this->expectException(\RuntimeException::class);
+        $this->expectException(RuntimeException::class);
 
         $this->hookHandler->cleanupHook(new ManualHookRequest());
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace RoyBongers\CertbotDns01\Tests\Providers;
+namespace RoyBongers\Tests\CertbotDns01\Providers;
 
 use Hamcrest\Matchers;
 use Mockery;
@@ -20,14 +20,11 @@ class TransIpTest extends TestCase
 {
     use MockeryPHPUnitIntegration;
 
-    /** @var TransIp $transIp */
-    private $transIp;
+    private TransIp $transIp;
 
-    /** @var DnsRepository $dnsService */
-    private $dnsService;
+    private DnsRepository $dnsService;
 
-    /** @var DomainRepository $domainService */
-    private $domainService;
+    private DomainRepository $domainService;
 
     public function testItCreatesChallengeDnsRecord(): void
     {

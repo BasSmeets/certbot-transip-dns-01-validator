@@ -11,17 +11,13 @@ use RoyBongers\CertbotDns01\Providers\Interfaces\ProviderInterface;
 
 class TransIp implements ProviderInterface
 {
-    /** @var LoggerInterface $logger */
-    private $logger;
+    private LoggerInterface $logger;
 
-    /** @var Config $config */
-    private $config;
+    private Config $config;
 
-    /** @var TransipAPI $client */
-    private $client;
+    private TransipAPI $client;
 
-    /** @var array $domainNames */
-    private $domainNames = [];
+    private array $domainNames = [];
 
     public function __construct(Config $config, LoggerInterface $logger)
     {

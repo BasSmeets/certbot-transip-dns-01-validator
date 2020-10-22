@@ -1,6 +1,6 @@
 <?php
 
-namespace RoyBongers\CertbotDns01\Tests\Certbot;
+namespace RoyBongers\Tests\CertbotDns01\Certbot;
 
 use Mockery;
 use Psr\Log\NullLogger;
@@ -18,14 +18,11 @@ use Hamcrest\Matchers;
 
 class AuthHookTest extends TestCase
 {
-    /** @var Dns01ManualHookHandler $acme2 */
-    private $acme2;
+    private Dns01ManualHookHandler $acme2;
 
-    /** @var ProviderInterface $provider */
-    private $provider;
+    private ProviderInterface $provider;
 
-    /** @var DNSQuery $dnsQuery */
-    private $dnsQuery;
+    private DNSQuery $dnsQuery;
 
     public function testAuthHookWithPrimaryDomain(): void
     {

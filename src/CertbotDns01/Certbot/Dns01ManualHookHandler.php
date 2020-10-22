@@ -2,7 +2,6 @@
 
 namespace RoyBongers\CertbotDns01\Certbot;
 
-use Monolog\Logger;
 use RuntimeException;
 use Psr\Log\LoggerInterface;
 use PurplePixie\PhpDns\DNSQuery;
@@ -11,17 +10,19 @@ use RoyBongers\CertbotDns01\Providers\Interfaces\ProviderInterface;
 
 class Dns01ManualHookHandler
 {
-    /** @var int $sleep number of seconds to sleep between nameserver polling rounds */
-    private $sleep;
+    /**
+     * Number of seconds to sleep between nameserver polling rounds.
+     */
+    private int $sleep;
 
-    /** @var int $maxTries maximum number of times the nameservers will be queried before throwing an exception */
-    private $maxTries;
+    /**
+     * maximum number of times the nameservers will be queried before throwing an exception.
+     */
+    private int $maxTries;
 
-    /** @var ProviderInterface $provider */
-    private $provider;
+    private ProviderInterface $provider;
 
-    /** @var Logger $logger */
-    protected $logger;
+    protected LoggerInterface $logger;
 
     public function __construct(
         ProviderInterface $provider,
