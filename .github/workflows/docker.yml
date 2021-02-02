@@ -20,7 +20,7 @@ jobs:
         id: docker_meta
         uses: crazy-max/ghaction-docker-meta@v1
         with:
-          images: rbongers/certbot-dns-transip
+          images: bassmeets/certbot-dns-transip
           tag-sha: false
       -
         name: Set up QEMU
