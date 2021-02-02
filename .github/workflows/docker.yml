@@ -2,10 +2,10 @@ name: Build Docker and publish
 
 on:
   push:
-    branches: 
+    branches:
       - master
       - develop
-      tags:
+    tags:
       - v*.*.*
 
 jobs:
