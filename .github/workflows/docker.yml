@@ -1,8 +1,12 @@
-name: ci
+name: Build Docker and publish
 
 on:
   push:
-    branches: master
+    branches: 
+      - master
+      - develop
+      tags:
+      - v*.*.*
 
 jobs:
   multi:
@@ -11,6 +15,13 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
+      -
+        name: Docker meta
+        id: docker_meta
+        uses: crazy-max/ghaction-docker-meta@v1
+        with:
+          images: bassmeets/certbot-dns-transip 
+          tag-sha: false
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -30,6 +41,6 @@ jobs:
           context: .
           file: ./Dockerfile
           platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x
-          push: true
-          tags: |
-            bassmeets/certbot-dns-transip:latest
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.docker_meta.outputs.tags }}
+          labels: ${{ steps.docker_meta.outputs.labels }}
